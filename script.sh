@@ -100,11 +100,19 @@ do
     done
 done
 ##########################################################
-
+######## Attachment Managment ############################
+for i in $(ls -r $historyPath)
+do
+    if [ "$attachment" == "" ];then
+        attachment="-a "$historyPath"/"$i
+    else
+        attachment=$attachment" -a "$historyPath"/"$i
+    fi
+done
+###########################################################
 ####### Mail Sending ######################################
 
-zip -r output.zip "$historyPath"
-mail -a  output.zip -v -s "Test Script" "$addrMail" < /tmp/AZ/Ressources/mail.html 
+mail ""$attachment"" -v -s "Test Script" "$addrMail" < /tmp/AZ/Ressources/mail.html 
 ###############################################################
 
 
