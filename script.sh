@@ -13,7 +13,7 @@ nameFile=$2
 #################
 
 ### Variables ###
-basePath="/tmp/azGit"
+basePath="/tmp/AZ"
 workPath="Work"
 inPath=$workPath"/InFile"
 errorPath="Error"
@@ -65,7 +65,7 @@ do
     docoValue=${doco[$i]}
     dctoValue=${dcto[$i]}
     final=${batch[$i]}"_"${doco[$i]}"_"${dcto[$i]}
-    if [ $debug == 2 ];then
+    if [ $debug == 1 ];then
         echo "Batch Value : "${batch[$i]}
         echo "Val Final : "$final
     fi
@@ -102,11 +102,13 @@ done
 ##########################################################
 
 ####### Mail Sending ######################################
-#mail -a /tmp/AZ/InFile/out.txt -v -s "Test Script\nContent-Type: text/html" $addrMail < /tmp/AZ/Ressources/mail.html 
+
+zip -r output.zip "$historyPath"
+mail -a  output.zip -v -s "Test Script" "$addrMail" < /tmp/AZ/Ressources/mail.html 
 ###############################################################
 
-#echo $listFile
 
-#echo $listFile| mail -s "Test" miloud.saihia@gmail.com
 
-#echo ${listFile%$suffix}
+
+
+
